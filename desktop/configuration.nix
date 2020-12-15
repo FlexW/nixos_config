@@ -58,6 +58,7 @@ in
     hostName = "desktop";
     useDHCP = false;
     interfaces.enp3s0.useDHCP = true;
+    networkmanager.enable = true;
   };
 
 
@@ -71,6 +72,10 @@ in
   };
 
   services = {
+
+    gnome3 = {
+      gnome-keyring.enable = true;
+    };
 
     locate = {
       enable = true;
@@ -90,8 +95,12 @@ in
         xterm.enable = false;
       };
 
+      libinput = {
+        enable = true;
+      };
+
       displayManager = {
-        defaultSession = "none+i3";
+        defaultSession = "sway";
 
         # HighDPI and cursor
         sessionCommands = ''
@@ -168,6 +177,40 @@ in
     };
 
     seahorse.enable = true;
+    nm-applet.enable = true;
+
+        sway = {
+      enable = true;
+      wrapperFeatures.gtk = true; # so that gtk works properly
+      extraPackages = with pkgs; [
+        swaylock-effects # Screen locker
+        swayidle
+        wl-clipboard # Clipboard support
+        mako # Notifications
+        wofi # Program starter
+        xwayland # Legacy X support
+        waybar # Statusbar
+        wf-recorder # Screenrecorder
+        brightnessctl # Brightness
+        sway-contrib.grimshot # Screenshot
+        grim # Screenshot
+        slurp # Select area for screenshot
+        jq # Parse swaymsg
+        wdisplays # Configure screens
+        kanshi # Configure screens automatic
+        # wshowkeys # Screencast keys
+        waypipe # Screen forwarding
+        wev # Key events
+        wayvnc # VNC
+        gammastep # Redshift
+        libappindicator-gtk3 # Tray icons
+      ];
+      extraSessionCommands = ''
+        export QT_QPA_PLATFORM=xcb
+        # Fix for some Java AWT applications (e.g. Android Studio),
+        export _JAVA_AWT_WM_NONREPARENTING=1
+      '';
+    };
   };
 
   # Enable sound.
@@ -219,7 +262,7 @@ in
 
     users.felix = {
       isNormalUser = true;
-      extraGroups = [ "wheel" "mlocate" ];
+      extraGroups = [ "wheel" "mlocate" "networkmanager" "video" "adbusers" ];
     };
   };
 
@@ -300,7 +343,7 @@ in
     vanilla-dmz
   ];
 
-  security.pam.services.login.enableGnomeKeyring = true;
+  security.pam.services.lightdm.enableGnomeKeyring = true;
 
   # Don't edit.
   system.stateVersion = "20.09";

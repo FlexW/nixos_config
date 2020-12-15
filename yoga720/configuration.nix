@@ -116,15 +116,9 @@ in
           rofi
           i3lock-fancy-rapid
           yad
-
-          (i3blocks.overrideDerivation (old: {
-            src = fetchFromGitHub {
-              owner = "FlexW";
-              repo = "i3blocks";
-              rev = "ca50d9d30edb60f3ce19271872104a9f2d5ac35e";
-              sha256 = "1vgw2dji4zpf81l0gzy5crkzrnfsmskk5pss4gjby3svlipqgdc8";
-            };
-          }))
+          i3blocks
+          flashfocus
+          picom
         ];
       };
     };
