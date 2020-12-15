@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+SYSTEM_NAME=$(hostname)
+
 sudo rm -rf /etc/nixos/*
-sudo cp -r . /etc/nixos/
+sudo cp -r ${SYSTEM_NAME}/* common /etc/nixos/
 sudo nixos-rebuild --upgrade switch $@

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-rm -rf /etc/nixos/*
-cp -r . /etc/nixos/
-sudo nixos-rebuild switch $@
