@@ -278,6 +278,7 @@ in
   # System packages
   environment.systemPackages = with pkgs; [
     man-pages
+    busybox
 
     ntfs3g jmtpfs
 
@@ -291,7 +292,7 @@ in
     firefox qutebrowser tor-browser-bundle-bin
     alacritty
     mu offlineimap
-    zathura
+    zathura mupdf
 
     pass
 
@@ -302,7 +303,7 @@ in
 
     htop
 
-    scrot feh viewnior imagemagick
+    scrot feh viewnior imagemagick fbida
 
     hunspell hunspellDicts.de_DE hunspellDicts.en_GB-large
 
@@ -310,7 +311,7 @@ in
     python3 python27
 
     # C/C++
-    gcc clang clang-tools cmake ninja gnumake
+    gcc clang clang-tools cmake ninja gnumake ccls
 
     # Web dev
     hugo
@@ -320,7 +321,7 @@ in
     nodePackages.typescript
     nodePackages.typescript-language-server
 
-    mpg123 mpg321 vlc cmus spotify playerctl
+    mpg123 mpg321 vlc cmus spotify playerctl mplayer
 
     exiftool
 
